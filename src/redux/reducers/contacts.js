@@ -1,5 +1,8 @@
-import { ADD_CONTACTS, DELETE_CONTACTS } from 'redux/types/index';
-// import { DELETE_CONTACTS } from 'redux/types/index';
+import {
+  ADD_CONTACTS,
+  DELETE_CONTACTS,
+  FILTER_CONTACTS,
+} from 'redux/types/index';
 
 const contacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -10,7 +13,7 @@ const contacts = [
 
 const contactsStorage = JSON.parse(localStorage.getItem('contacts'));
 
-const contactsReducer = (state = contactsStorage ?? contacts, action) => {
+export const contactsReducer = (state = contactsStorage ?? contacts, action) => {
   switch (action.type) {
     case ADD_CONTACTS:
       localStorage.setItem(
@@ -27,4 +30,12 @@ const contactsReducer = (state = contactsStorage ?? contacts, action) => {
   }
 };
 
-export default contactsReducer;
+export const filterReducer = (state = '', action) => {
+  switch (action.type) {
+    case FILTER_CONTACTS:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
