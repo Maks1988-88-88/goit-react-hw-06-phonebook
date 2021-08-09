@@ -1,5 +1,5 @@
 import s from 'components/App/App.module.css';
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import Section from 'components/Section/Section';
 import ContactForm from 'components/ContactForm/ContactForm';
 // import { nanoid } from 'nanoid';

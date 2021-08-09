@@ -1,12 +1,18 @@
 // import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContacts } from 'redux/actions/contacts';
+
 import s from 'components/ContactList/ContactList.module.css';
-
-
 
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
+  const dispatch = useDispatch();
+
+  const deleteItem = id => {
+    dispatch(deleteContacts(id));
+  };
+
+
   return (
     <ol className={s.list}>
       {contacts.map(el => (
@@ -15,13 +21,13 @@ export default function ContactList() {
             <span className={s.text}>
               {el.name}: {el.number}
             </span>
-            {/* <button
+            <button
               type="button"
-              onClick={() => onDelete(el.id)}
+              onClick={() => deleteItem(el.id)}
               className={s.btn}
             >
               Delete
-            </button> */}
+            </button>
           </p>
         </li>
       ))}
@@ -33,4 +39,3 @@ export default function ContactList() {
 //   contacts: PropTypes.array.isRequired,
 //   onDelete: PropTypes.func.isRequired,
 // };
-
