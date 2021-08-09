@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import s from 'components/ContactList/ContactList.module.css';
 
 
 
-export default function ContactList({ contacts, onDelete }) {
+export default function ContactList() {
+  const contacts = useSelector(state => state.contacts);
+  console.log(contacts);
   return (
     <ol className={s.list}>
       {contacts.map(el => (
@@ -12,13 +15,13 @@ export default function ContactList({ contacts, onDelete }) {
             <span className={s.text}>
               {el.name}: {el.number}
             </span>
-            <button
+            {/* <button
               type="button"
               onClick={() => onDelete(el.id)}
               className={s.btn}
             >
               Delete
-            </button>
+            </button> */}
           </p>
         </li>
       ))}
@@ -26,8 +29,8 @@ export default function ContactList({ contacts, onDelete }) {
   );
 }
 
-ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: PropTypes.array.isRequired,
+//   onDelete: PropTypes.func.isRequired,
+// };
 
